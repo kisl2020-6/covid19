@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<title>運動量調査</title>
+<head></head>
+<body>
+    <p>運動項目を選ぶ</p>
+    <div class="pulldownset">
+   
+    <select class="mainselect">
+    <option value="">運動のカテゴリを選択</option>
+    <option value="a">ストレッチ</option>
+    <option value="b">運動</option>
+    <option value="c">掃除</option>
+    </select>
+    
+    <select id="a" class="subbox">
+    <option value="a1">体幹</option>
+    <option value="b1">バランスボール</option>
+    </select>
+    <select id="b" class="subbox">
+    <option value="a2">腹筋</option>
+    <option value="b2">腕立て</option>
+    </select>
+    <select id="c" class="subbox">
+    <option value="a3">雑巾がけ</option>
+    <option value="b3">皿洗い</option>
+    </select>
+    
+    </div>
+    
+    <script type="text/javascript">
+		// HTMLの読み込み直後に実行：
+		document.addEventListener('DOMContentLoaded', function() {
+
+			// ▼とりあえずサブBOXを全て非表示にする（CSSで書けば早いが）
+			var allSubBoxes = document.getElementsByClassName("subbox");
+			for( var i=0 ; i<allSubBoxes.length ; i++) {
+				allSubBoxes[i].style.display = 'none';
+			}
+
+			// ▼全てのプルダウンボックスごとに処理
+			var mainBoxes = document.getElementsByClassName('pulldownset');
+			for( var i=0 ; i<mainBoxes.length ; i++) {
+
+				var mainSelect = mainBoxes[i].getElementsByClassName("mainselect");	// メインのプルダウンメニュー（※後でvalue属性値を参照するので、select要素である必要があります。）
+				mainSelect[0].onchange = function () {
+					// 同じ親要素に含まれている全サブBOXを消す
+					var subBox = this.parentNode.getElementsByClassName("subbox");	// 同じ親要素に含まれる.subbox（※select要素に限らず、どんな要素でも構いません。）
+					for( var j=0 ; j<subBox.length ; j++) {
+						subBox[j].style.display = 'none';
+					}
+
+					// 指定されたサブBOXを表示する
+					if( this.value ) {
+						var targetSub = document.getElementById( this.value );	// 「メインのプルダウンメニューで選択されている項目のvalue属性値」と同じ文字列をid属性値に持つ要素を得る
+						targetSub.style.display = 'inline';
+					}
+				}
+
+			}
+
+		});
+	</script>
+	<form action="#" method="post">
+        <p>その運動を何分程度しましたか<br><input type="int" name="time">分</p>
+    </form>
+    <input type="submit" value="次の運動を入力する">
+    <input type="submit" value="診断する">
+	
+</body>
+</html>
