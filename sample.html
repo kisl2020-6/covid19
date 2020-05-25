@@ -1,47 +1,44 @@
 <html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>test</title>
+  </head>
+  <body>
+    <p>運動を選択してください</p>
+    <form action="test.cgi" method="post">
+      <!-- ここから -->
+      <select class="category">
+        <option value="categoryA">カテゴリ1</option>
+        <option value="categoryB">カテゴリ2</option>
+        <option value="categoryC">カテゴリ3</option>
+      </select>
+      <select class="item" name="excercise1"><!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
+        <option value="1">運動内容1</option>
+        <option value="2">運動内容2</option>
+        <option value="3">運動内容3</option>
+      </select>
+      <input type="text" name="time1">分<!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
+      <br />
+      <!-- ここまでを質問追加ボタンが押されるたびに追加する -->
+      <!-- ここから -->
+      <select class="category">
+        <option value="categoryA">カテゴリ1</option>
+        <option value="categoryB">カテゴリ2</option>
+        <option value="categoryC">カテゴリ3</option>
+      </select>
+      <select class="item" name="excercise1"><!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
+        <option value="1">運動内容1</option>
+        <option value="2">運動内容2</option>
+        <option value="3">運動内容3</option>
+      </select>
+      <input type="text" name="time1">分<!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
+      <br />
+      <!-- ここまでを質問追加ボタンが押されるたびに追加する -->
 
-<head>
-  <meta charset="utf-8">
-  <title>test</title>
-</head>
-
-<body>
-  <p>運動を選択してください</p>
-  <form action="test.cgi" method="post">
-    <!-- ここから -->
-    <select class="category">
-      <option value="categoryA">カテゴリ1</option>
-      <option value="categoryB">カテゴリ2</option>
-      <option value="categoryC">カテゴリ3</option>
-    </select>
-    <select class="item" name="excercise1"><!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
-      <option value="1">運動内容1</option>
-      <option value="2">運動内容2</option>
-      <option value="3">運動内容3</option>
-    </select>
-    <input type="text" name="time1">分<!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
-    <br />
-    <!-- ここまでを質問追加ボタンが押されるたびに追加する -->
-    <!-- ここから -->
-    <select class="category">
-      <option value="categoryA">カテゴリ1</option>
-      <option value="categoryB">カテゴリ2</option>
-      <option value="categoryC">カテゴリ3</option>
-    </select>
-    <select class="item" name="excercise2"><!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
-      <option value="1">運動内容1</option>
-      <option value="2">運動内容2</option>
-      <option value="3">運動内容3</option>
-    </select>
-    <input type="text" name="time2">分<!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
-    <br />
-    <!-- ここまでを質問追加ボタンが押されるたびに追加する -->
-
-    <input type="submit" value="診断">
-  </form>
-  <form action="質問を追加するjavascriptの関数" method="post">
-    <input type="submit" value="質問を追加する">
-  </form>
-</body>
-
+      <input type="submit" value="診断">
+    </form>
+    <form action="質問を追加するjavascriptの関数" method="post">
+      <input type="submit" value="質問を追加する">
+    </form>
+  </body>
 </html>
