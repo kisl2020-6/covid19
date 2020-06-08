@@ -21,7 +21,7 @@ input_exercises = Array.new
 i = 1
 while input.has_key?("exercise" + i.to_s)
     #ExerciseIDで検索した結果
-    exercise = db.execute("select * from METs where ExerciseID == ?;", input["exercise" + i.to_s]).flatten!
+    exercise = db.execute("select * from Exercises where ExerciseID == ?;", input["exercise" + i.to_s]).flatten!
     #検索結果がない、検索結果が2件以上ある場合無視
     next if exercise == nil or exercise.size >= 5
     #入力された運動のデータに時間を加えて配列に格納
@@ -37,7 +37,7 @@ db.close
 
 #条件を満たす最小のものを取り出したい
 def suggest_exercise(category, metsh_diff)
-    a = db.execute("select ExerciseID, MIN(METs), Category, Exercise from METs where METs >= ? and Category == ?", metsh_diff, category)
+    a = db.execute("select * from Exercises where METs >= ? and Category == ?", metsh_diff, category)
     return a
 end
 
@@ -61,5 +61,6 @@ input_exercises.each do |exercise|
     printf("<li>ID:%s, METs:%s, Category:%s, Exercise:%s, Time: %s</li>\n", exercise[0], exercise[1], exercise[2], exercise[3], exercise[4])
 end
 print("</ul>\n")
+print("desu")
 print("  </body>\n")
 print("</html>\n")
