@@ -17,8 +17,8 @@ end
 
 p data
 
-db.execute("CREATE TABLE METs(ExerciseID int not null primary key, METs float, Category char, Exercise char);")
+db.execute("CREATE TABLE Exercises(ExerciseID int not null primary key, METs float, Category char, Exercise char);")
 data.each do |row|
-    db.execute("INSERT INTO METs(ExerciseID, METs, Category, Exercise) VALUES (?, ?, ?, ?);", row[0], row[1], row[2], row[3])
+    db.execute("INSERT INTO Exercises(ExerciseID, METs, Category, Exercise) VALUES (?, ?, ?, ?);", row[0], row[1], row[2], row[3])
 end
 db.close
