@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<title>運動量調査</title>
+<head>
+</head>
+<body>
+<p>運動を選択してください</p>
+<form action="mets.cgi" method="post">
+      <select class="category" id="category">
+        <option value="categoryA">カテゴリ1</option>
+        <option value="categoryB">カテゴリ2</option>
+        <option value="categoryC">カテゴリ3</option>
+      </select>
+      <select class="item" id="excercise1"><!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
+        <option value="1001">運動内容1</option>
+        <option value="1002">運動内容2</option>
+        <option value="1003">運動内容3</option>
+      </select>
+      <input type="text" id="time1"><!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
+<br id="br">
+
+<div id ="display_area"></div>
+<input type="submit" value="診断">
+</form>
+
+<input type="button" value="質問を追加する" onclick="add_question()">
+
+<script type="text/javascript">
+var count = 2;
+function add_question() {
+    // クローン生成
+    category   = document.getElementById('category');
+    item   = document.getElementById('excercise1');
+    time   = document.getElementById('time1');
+    br = document.getElementById('br');
+
+    clone_1 = category.cloneNode(true);
+    clone_2 = item.cloneNode(true);
+    clone_3 = time.cloneNode(true);
+    clone_4 = br.cloneNode(true);
+    // idの設定
+    clone_2.id            = "excercise" + count;
+    clone_3.id            = "time" + count;
+    // 表示
+    base = document.getElementById('display_area')
+    base.appendChild(clone_1);
+    base.appendChild(clone_2);
+    base.appendChild(clone_3);
+    base.appendChild(clone_4);
+    // カウンタアップ
+    count++;
+}
+</script>
+</body>
