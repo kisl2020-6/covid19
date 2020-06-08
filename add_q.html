@@ -12,14 +12,13 @@
         <option value="categoryB">カテゴリ2</option>
         <option value="categoryC">カテゴリ3</option>
       </select>
-      <select class="item" id="excercise1"><!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
+      <select class="item" name="excercise1"><!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
         <option value="1001">運動内容1</option>
         <option value="1002">運動内容2</option>
         <option value="1003">運動内容3</option>
       </select>
-      <input type="text" id="time1"><!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
+      <input type="text" name="time1"><!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
 <br id="br">
-
 <div id ="display_area"></div>
 <input type="submit" value="診断">
 </form>
@@ -31,17 +30,17 @@ var count = 2;
 function add_question() {
     // クローン生成
     category   = document.getElementById('category');
-    item   = document.getElementById('excercise1');
-    time   = document.getElementById('time1');
+    item   = document.getElementsByName('excercise1');
+    time   = document.getElementsByName('time1');
     br = document.getElementById('br');
 
     clone_1 = category.cloneNode(true);
-    clone_2 = item.cloneNode(true);
-    clone_3 = time.cloneNode(true);
+    clone_2 = item[0].cloneNode(true);
+    clone_3 = time[0].cloneNode(true);
     clone_4 = br.cloneNode(true);
     // idの設定
-    clone_2.id            = "excercise" + count;
-    clone_3.id            = "time" + count;
+    clone_2.name           = "excercise" + count;
+    clone_3.name           = "time" + count;
     // 表示
     base = document.getElementById('display_area')
     base.appendChild(clone_1);
