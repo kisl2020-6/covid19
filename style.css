@@ -24,3 +24,54 @@ h1 span::before {
 h1 span::after {
   left: 100%;
 }
+
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+
+/**/
+.gauge {
+  width: 300px;
+  margin: 0 auto;
+  border: solid 5px #333;
+  border-radius: 15px;
+}
+.gauge_progress {
+  height: 20px;
+  margin: 0;
+  background: #0c9;
+  border-radius: 10px;
+  -webkit-animation: anime1 1s 1 ease;
+}
+@-webkit-keyframes anime1 {
+  0% {width: 0px;}
+}
+
+.acd_check{
+  display: none;
+}
+.acd_label{
+  display: block;
+  margin: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+.acd_content{
+  border: 1px solid #333;
+  border-radius: 5px;
+  height: 0;
+  opacity: 0;
+  font-size: 0;
+  text-align: center;
+  padding: 0 10px;
+  transition: .5s;
+  visibility: hidden;
+}
+.acd_check:checked + .acd_label + .acd_content{
+  height: auto;
+  opacity: 1;
+  font-size: 100%;
+  padding: 10px;
+  visibility: visible;
+}

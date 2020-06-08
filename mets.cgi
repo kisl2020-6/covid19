@@ -33,12 +33,31 @@ while input.has_key?("exercise" + i.to_s)
     i += 1
 end
 
-db.close
+#提案された運動を格納する配列
+suggested_exercises = Array.new
 
-#条件を満たす最小のものを取り出したい
-def suggest_exercise(category, metsh_diff)
-    a = db.execute("select * from Exercises where METs >= ? and Category == ?", metsh_diff, category)
-    return a
+#指定したカテゴリの中で、指定したMETsよりも大きい最小の項目を取り出す関数
+def suggest_exercise(db, target_mets, category)
+    result = db.execute("select * from Exercises where METs >= ? and Category == ? and \
+        METs = (select min(METs) from Exercises where METs >= ? and Category = ?)", target_mets, category, target_mets, category)[0]
+    #結果がなければ一番高いやつ入れとく
+    result = db.execute("select * from Exercises where Category = ? and \
+        METs = (select max(METs) from Exercises where Category = ?)", category, category)[0] if result == nil
+    return result
+end
+
+#METs時が目標より不足しているとき、それを補う運動を各カテゴリから提案する
+if Target_metsh > metsh_sum
+    #目標より不足しているMETs時
+    metsh_diff = Target_metsh - metsh_sum
+    #「運動、筋トレなど」カテゴリ。10分＝1/6時間行うよう提案する。
+    suggested_exercises.push(suggest_exercise(db, metsh_diff * 6, "運動、筋トレなど").push(10))
+    #「家事」カテゴリ。20分＝1/3時間行うよう提案する。
+    suggested_exercises.push(suggest_exercise(db, metsh_diff * 3, "家事").push(20))
+    #「外出時」カテゴリ。30分＝1/2時間行うよう提案する。
+    suggested_exercises.push(suggest_exercise(db, metsh_diff * 2, "外出時").push(30))
+    #「趣味」カテゴリ。60分＝1/1時間行うよう提案する。
+    suggested_exercises.push(suggest_exercise(db, metsh_diff, "趣味").push(60))
 end
 
 #----------表示----------
@@ -50,17 +69,42 @@ print("<html>\n")
 print("  <head>\n")
 print("    <meta charset='UTF-8'>\n")
 print("    <title>診断結果</title>\n")
-print("    <link rel='stylesheet' href='style.css'>")
+print("    <link rel='stylesheet' href='style.css'>\n")
 print("  </head>\n")
 print("  <body>\n")
-print metsh_sum
-print(" / ")
-print Target_metsh
-print("\n<ul>\n")
+print("    <div class='container'>")
+print("    <input type='checkbox' id='acd_check1' class='acd_check'>\n")
+print("    <label for='acd_check1' class='acd_label'>\n")
+print("      <div class='gauge'>\n")
+printf("        <div class='gauge_progress' style='width:%s%%'></div>\n", metsh_sum / Target_metsh * 100)
+print("      </div>\n")
+print("    </label>\n")
+print("    <div id='acd_content1' class='acd_content'>\n")
+printf("      <h3>%s / %.2f METs時<br />\n", metsh_sum, Target_metsh)
+printf("      ※一週間あたり%.2f / 23 METs時</h3><br />\n", metsh_sum * 7)
+print("      <ul>\n")
 input_exercises.each do |exercise|
-    printf("<li>ID:%s, METs:%s, Category:%s, Exercise:%s, Time: %s</li>\n", exercise[0], exercise[1], exercise[2], exercise[3], exercise[4])
+    printf("        <li>%s：　%s METs　×　%s 分　＝　%.2f METs時</li>\n", exercise[3], exercise[1], exercise[4], exercise[1].to_f * exercise[4].to_i / 60)
 end
-print("</ul>\n")
-print("desu")
+print("      </ul><br />\n")
+print("      健康維持のためには「強度が3METs以上の運動を一週間あたり23METs時以上行う」という基準が示されています<br />\n")
+print("      （参照：<a href='https://www.mhlw.go.jp/stf/houdou/2r9852000002xple-att/2r9852000002xpqt.pdf'>https://www.mhlw.go.jp/stf/houdou/2r9852000002xple-att/2r9852000002xpqt.pdf</a>）<br />\n")
+print("    </div>\n")
+print("    </input>\n")
+if Target_metsh > metsh_sum
+    print("    <h2>健康維持のために、もうすこしだけ運動してみましょう！</h2>\n")
+    print("    例えば、今からこんな運動はいかがですか？<br />\n")
+    print("    <ul>\n")
+    suggested_exercises.each do |exercise|
+        printf("      <li>%s：%s（%sMETs）を%s分</li>\n", exercise[2], exercise[3], exercise[1], exercise[4])
+        printf("      <img src='images/%s.jpeg' />", exercise[0])
+    end
+    print("    </ul>\n")
+else
+    print("    <h2>健康維持のために必要な運動は足りているようです！</h2>\n")
+end
+print("    </div>")
 print("  </body>\n")
 print("</html>\n")
+
+db.close
