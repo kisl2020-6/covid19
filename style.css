@@ -1,0 +1,26 @@
+h1 {
+  overflow: hidden;
+  text-align: center;
+}
+h1 span {
+  position: relative;
+  display: inline-block;
+  margin: 0 2.5em;
+  padding: 0 1em;
+  text-align: left;
+}
+h1 span::before,
+h1 span::after {
+  position: absolute;
+  top: 50%;
+  content: '';
+  width: 400%;
+  height: 1px;
+  background-color: #ccc;
+}
+h1 span::before {
+  right: 100%;
+}
+h1 span::after {
+  left: 100%;
+}

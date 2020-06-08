@@ -1,44 +1,92 @@
-<html lang="ja" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>test</title>
-  </head>
-  <body>
-    <p>運動を選択してください</p>
-    <form action="mets.cgi" method="post">
-      <!-- ここから -->
-      <select class="category">
-        <option value="categoryA">カテゴリ1</option>
-        <option value="categoryB">カテゴリ2</option>
-        <option value="categoryC">カテゴリ3</option>
-      </select>
-      <select class="item" name="exercise1"><!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
-        <option value="1">運動内容1</option>
-        <option value="2">運動内容2</option>
-        <option value="3">運動内容3</option>
-      </select>
-      <input type="text" name="time1">分<!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
-      <br />
-      <!-- ここまでを質問追加ボタンが押されるたびに追加する -->
-      <!-- ここから -->
-      <select class="category">
-        <option value="categoryA">カテゴリ1</option>
-        <option value="categoryB">カテゴリ2</option>
-        <option value="categoryC">カテゴリ3</option>
-      </select>
-      <select class="item" name="exercise2"><!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
-        <option value="1">運動内容1</option>
-        <option value="2">運動内容2</option>
-        <option value="3">運動内容3</option>
-      </select>
-      <input type="text" name="time2">分<!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
-      <br />
-      <!-- ここまでを質問追加ボタンが押されるたびに追加する -->
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<title>運動量調査</title>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>あなたは健康維持できている？<br>～健康づくりあっとほーむ～</h1>
+<p>新型コロナウイルスの影響で最近体がなまっていたり、あまり動かしていないなあ…と思っているそこのあなた！もしかしたら健康な体づくりができていないかもしれません！
+このページでは、あなたの一日の活動から健康維持できているかどうかを短い時間で診断することができます。診断結果で健康維持できていないと診断されても大丈夫！そのときにはあなたにおすすめの家庭内や家の近くでできる運動や活動を提案します！</p>
 
-      <input type="submit" value="診断">
-    </form>
-    <form action="質問を追加するjavascriptの関数" method="post">
-      <input type="submit" value="質問を追加する">
-    </form>
-  </body>
-</html>
+<p>------------------------------------------------------------------------------</p>
+<p>☆あなたの一日の平均的な活動と、それを行っている大体の時間(分単位)を入力してください。</p>
+<form action="mets.cgi" method="post">
+      <select class="category" id="category">
+        <option value="">カテゴリを選択してください</option>
+        <option value="categoryA">運動、筋トレなど</option>
+        <option value="categoryB">家事</option>
+        <option value="categoryC">外出時</option>
+        <option value="categoryD">趣味</option>
+      </select>
+      <select name="excercise1"><!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
+        <option value="1">運動を選んでください</option>
+        <option value="1">ピラティス</option>
+        <option value="2">腕立て</option>
+        <option value="3">映像を用いた運動(Wii Fitなど)</option>
+        <option value="4">ヨガ</option>
+        <option value="5">スクワット</option>
+        <option value="6">ウェイトリフティング、パワーリフティング</option>
+        <option value="7">エアロビクス、ダンス</option>
+        <option value="8">エアロビクス</option>
+        <option value="9">腹筋</option>
+        <option value="10">なわとび</option>
+        <option value="11">背筋</option>
+        <option value="12">有酸素運動</option>
+        <option value="13">ウェイトトレーニング</option>
+        <option value="14">ランニングマシーンを用いたウォーキング</option>
+        <option value="15">ランニングマシーンを用いたジョギング、ランニング</option>
+        <option value="16">掃除</option>
+        <option value="17">部屋の片づけ</option>
+        <option value="18">大工仕事</option>
+        <option value="19">ガーデニング、庭仕事</option>
+        <option value="20">自転車に乗る</option>
+        <option value="21">歩行</option>
+        <option value="22">ランニング</option>
+        <option value="23">楽器の演奏</option>
+        <option value="24">ガーデニング</option>
+        <option value="25">美術品・工芸品作り</option>
+        <option value="26">お菓子作り</option>
+        <option value="27">フリスビー</option>
+        <option value="28">ゴルフ</option>
+        <option value="29">武術（少林拳とか）</option>
+        <option value="30">スケートボード</option>
+        
+      </select>
+      <br>
+      <input type="text" name="time1" placeholder="何分運動しましたか？"><!-- ここの数字を質問追加ごとに1から順に足していってほしいです -->
+<br id="br">
+<div id ="display_area"></div>
+<input type="submit" value="診断">
+</form>
+
+<input type="button" value="質問を追加する" onclick="add_question()">
+
+<script type="text/javascript">
+var count = 2;
+function add_question() {
+    // クローン生成
+    category   = document.getElementById('category');
+    item   = document.getElementsByName('excercise1');
+    time   = document.getElementsByName('time1');
+    br = document.getElementById('br');
+
+    clone_1 = category.cloneNode(true);
+    clone_2 = item[0].cloneNode(true);
+    clone_3 = time[0].cloneNode(true);
+    clone_4 = br.cloneNode(true);
+    // idの設定
+    clone_2.name           = "excercise" + count;
+    clone_3.name           = "time" + count;
+    // 表示
+    base = document.getElementById('display_area')
+    base.appendChild(clone_1);
+    base.appendChild(clone_2);
+    base.appendChild(clone_3);
+    base.appendChild(clone_4);
+    // カウンタアップ
+    count++;
+}
+</script>
+</body>
