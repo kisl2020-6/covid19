@@ -67,7 +67,7 @@ var count = 2;
 function add_question() {
     // クローン生成
     category   = document.getElementById('category');
-    item   = document.getElementsByName('excercise1');
+    item   = document.getElementsByName('exercise1');
     time   = document.getElementsByName('time1');
     br = document.getElementById('br');
 
@@ -76,7 +76,7 @@ function add_question() {
     clone_3 = time[0].cloneNode(true);
     clone_4 = br.cloneNode(true);
     // idの設定
-    clone_2.name           = "excercise" + count;
+    clone_2.name           = "exercise" + count;
     clone_3.name           = "time" + count;
     // 表示
     base = document.getElementById('display_area')
