@@ -25,7 +25,6 @@ h1 span::before {
 right: 100%;
 }
 h1 span::after {
-<<<<<<< HEAD
 left: 100%;
 }
 
@@ -34,22 +33,15 @@ img {
   display: block;
   margin: auto;
 }
-
-body {
-background-image: url(img/back1.gif)
-}
-
 #wrapper {
 display: flex;
 flex-direction: column;
 min-height: 100vh;
 }
-
 hr{
 border-top: 1px dashed #bbb;
 border-bottom: 1px dashed #fff;
 }
-
 .button {
 display       : inline-block;
 border-radius : 5%;          /* 角丸       */
@@ -57,16 +49,16 @@ font-size     : 18pt;        /* 文字サイズ */
 text-align    : center;      /* 文字位置   */
 cursor        : pointer;     /* カーソル   */
 padding       : 10px 10px;   /* 余白       */
-background    : #007fff;     /* 背景色     */
+background    : #f90;     /* 背景色     */
 color         : #ffffff;     /* 文字色     */
 line-height   : 1em;         /* 1行の高さ  */
 transition    : .3s;         /* なめらか変化 */
 box-shadow    : 3px 3px 3px #666666;  /* 影の設定 */
-border        : 2px solid #007fff;    /* 枠の指定 */
+border        : 2px solid #f90;    /* 枠の指定 */
 }
 .button:hover {
 box-shadow    : none;        /* カーソル時の影消去 */
-color         : #007fff;     /* 背景色     */
+color         : #f90;     /* 背景色     */
 background    : #ffffff;     /* 文字色     */
 }
 .add_wrap {
@@ -76,25 +68,21 @@ background    : #ffffff;     /* 文字色     */
 .input_wrap{
   text-align: center;
 }
-
 select{
   margin:3px;
 }
 input{
   margin: 3px 3px 12px;
 }
-
 .q{
 font-family: cursive;
 font-size: 20px;
 }
-=======
   left: 100%;
 }
 a {
   color: #f90;
 }
-
 /*表示領域*/
 .container {
   max-width: 800px;
@@ -198,4 +186,3 @@ a {
   font-size: 100%;
   visibility: visible;
 }
->>>>>>> de8fda00a61b81207c7c99e1ab3334df5d8bf95c
