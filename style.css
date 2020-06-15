@@ -25,6 +25,7 @@ h1 span::before {
 right: 100%;
 }
 h1 span::after {
+<<<<<<< HEAD
 left: 100%;
 }
 
@@ -87,3 +88,114 @@ input{
 font-family: cursive;
 font-size: 20px;
 }
+=======
+  left: 100%;
+}
+a {
+  color: #f90;
+}
+
+/*表示領域*/
+.container {
+  max-width: 800px;
+  margin: auto;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+/*修飾*/
+.achieve {
+  font-size: 150%;
+  color: #f90;
+}
+.footer {
+  font-size: 70%;
+  color: #666;
+}
+/*提案画像を表示する領域*/
+.boxes {
+  width: 100%;
+  padding: 20px;
+}
+.suggestion {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  color: #000;
+  background-color: #fff;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #fb6;
+  margin: 10px;
+  padding: 10px 15px;
+  border-radius: 40px;
+  border: solid 4px #f90;
+  box-shadow: 0 0 0 2px #333;
+  transition-duration: 0.3s;
+}
+.suggestion>p {
+  opacity: 0;
+  transition-duration: 0.3s;
+  font-weight: bold;
+  text-shadow: 1px 2px 3px #666;
+}
+.suggestion:hover {
+  background-color:rgba(255,255,255,0.7);
+  background-blend-mode: lighten;
+  background-size: cover;
+  transition-duration: 0.3s;
+}
+.suggestion:hover>p {
+  opacity: 1;
+  transition-duration: 0.3s;
+}
+/*METs達成率ゲージ*/
+.gauge {
+  width: 600px;
+  margin: 0 auto;
+  border: solid 5px #333;
+  border-radius: 30px;
+}
+.gauge_progress {
+  height: 40px;
+  margin: 0;
+  background: linear-gradient(to right,#fb6,#f90);
+  border-radius: 20px;
+  -webkit-animation: anime1 1s 1 ease;
+  animation: anime1 1s 1 ease;
+}
+@-webkit-keyframes anime1 {
+  0% {width: 0px;}
+}
+@keyframes anime1 {
+  0% {width: 0px;}
+}
+/*アコーディオンメニュー*/
+.acd_check{
+  display: none;
+}
+.acd_label{
+  display: block;
+  margin: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+.acd_content{
+  border: 2px solid #333;
+  border-radius: 5px;
+  max-width: 600px;
+  height: 0;
+  opacity: 0;
+  font-size: 0;
+  text-align: center;
+  padding: 10px 10px 20px;
+  margin: auto;
+  transition: .5s;
+  visibility: hidden;
+}
+.acd_check:checked + .acd_label + .acd_content{
+  height: auto;
+  opacity: 1;
+  font-size: 100%;
+  visibility: visible;
+}
+>>>>>>> de8fda00a61b81207c7c99e1ab3334df5d8bf95c
