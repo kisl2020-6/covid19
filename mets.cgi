@@ -89,21 +89,21 @@ input_exercises.each do |exercise|
     printf("        <li>%s：　%s METs　×　%s 分　＝　%.2f METs時</li>\n", exercise[3], exercise[1], exercise[4], exercise[1].to_f * exercise[4].to_i / 60)
 end
 print("      </ul><br />\n")
-print("      <div class='footer'>")
+print("      <div class='footer'>\n")
 print("        健康維持のためには「強度が3METs以上の運動を一週間あたり23METs時以上行う」という基準が示されています<br />\n")
 print("        （参照：<a href='https://www.mhlw.go.jp/stf/houdou/2r9852000002xple-att/2r9852000002xpqt.pdf'>https://www.mhlw.go.jp/stf/houdou/2r9852000002xple-att/2r9852000002xpqt.pdf</a>）\n")
-print("      </div>")
+print("      </div>\n")
 print("    </div>\n")
 if Target_metsh > metsh_sum
     print("    <h2>健康維持のために、もうすこしだけ運動してみましょう！</h2>\n")
     print("    例えば、今からこんな運動はいかがですか？<br />\n")
-    print("    <div class='boxes'>")
+    print("    <div class='boxes'>\n")
     suggested_exercises.each do |exercise|
         printf("      <a href='https://www.google.com/search?q=memo:%s+%s分' target='_blank'><div class='suggestion' style='background-image: url(\"img/%s.jpeg\");' ontouchstart=''>\n", exercise[3], exercise[4], exercise[0])
         printf("        <p>%s<br />（%sMETs）を <span class='achieve'>%s</span> 分</p>\n",  exercise[3], exercise[1], exercise[4])
         print("      </div></a>\n")
     end
-    print("    </div>")
+    print("    </div>\n")
 else
     print("    <h2>健康維持のために必要な運動は足りているようです！</h2>\n")
     print("    この調子です。健康維持のために運動を続けていきましょう\n")
