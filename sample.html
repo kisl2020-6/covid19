@@ -22,7 +22,7 @@
   <option value="C">外出時</option>
   <option value="D">趣味</option>
  </select>
- <select name="excercise1" style="visibility:hidden">
+ <select name="exercise1" style="visibility:hidden">
   <option value=""></option>
  </select>
  <br id = "br_1">
@@ -45,30 +45,30 @@ var count = 2,
     
 function setMenu(n,q_number) {
 var category = "category" + q_number,
-    excercise = "excercise" + q_number;
+    exercise = "exercise" + q_number;
     
 m = document.form[category].value;
-len = document.form[excercise].options.length;
+len = document.form[exercise].options.length;
     
 for (i=len-1; i>=0; i--) {
-document.form[excercise].options[i] = null;
+document.form[exercise].options[i] = null;
 }
 
-document.form[excercise].style.visibility = "visible";
+document.form[exercise].style.visibility = "visible";
 
 if(m == ""){
-document.form[excercise].style.visibility = "hidden";
+document.form[exercise].style.visibility = "hidden";
 }
 
 for (i=0; i<menuItem[n].length; i++) {
-document.form[excercise].options[i] = new Option(menuItem[n][i],menuvalue[n][i]);
+document.form[exercise].options[i] = new Option(menuItem[n][i],menuvalue[n][i]);
 }
 }
     
 function add_question() {
     // クローン生成
     category   = document.getElementsByName('category1');
-    item   = document.getElementsByName('excercise1');
+    item   = document.getElementsByName('exercise1');
     br_1 = document.getElementById('br_1');
     time   = document.getElementsByName('time1');
     br_2 = document.getElementById('br_2');
@@ -80,7 +80,7 @@ function add_question() {
     clone_5 = br_2.cloneNode(true);
     // nameの設定
     clone_1.name           = "category" + count;
-    clone_2.name           = "excercise" + count;
+    clone_2.name           = "exercise" + count;
     clone_4.name           = "time" + count;
     // 表示
     base = document.getElementById('display_area')

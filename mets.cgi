@@ -97,7 +97,7 @@ if Target_metsh > metsh_sum
     print("    例えば、今からこんな運動はいかがですか？<br />\n")
     print("    <div class='boxes'>")
     suggested_exercises.each do |exercise|
-        printf("      <a href='https://www.google.com/search?q=memo:%s+%s分' target='_blank'><div class='suggestion' style='background-image: url(\"images/%s.jpeg\");' ontouchstart=''>\n", exercise[3], exercise[4], exercise[0])
+        printf("      <a href='https://www.google.com/search?q=memo:%s+%s分' target='_blank'><div class='suggestion' style='background-image: url(\"img/%s.jpeg\");' ontouchstart=''>\n", exercise[3], exercise[4], exercise[0])
         printf("        <p>%s<br />（%sMETs）を <span class='achieve'>%s</span> 分</p>\n",  exercise[3], exercise[1], exercise[4])
         print("      </div></a>\n")
     end
