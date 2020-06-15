@@ -58,6 +58,8 @@ if Target_metsh > metsh_sum
     suggested_exercises.push(suggest_exercise(db, metsh_diff * 2, "外出時").push(30))
     #「趣味」カテゴリ。60分＝1/1時間行うよう提案する。
     suggested_exercises.push(suggest_exercise(db, metsh_diff, "趣味").push(60))
+    suggested_exercises.push(db.execute("select * from Exercises where ExerciseID == ?;", rand(1..30)).flatten!.push(60))
+    suggested_exercises.push(db.execute("select * from Exercises where ExerciseID == ?;", rand(1..30)).flatten!.push(60))
 end
 
 #----------表示----------
